@@ -1,0 +1,32 @@
+
+console.log("app file")
+const users = require("./users") //userName --> {userName,userAge}
+console.log("users...",users)
+const employee = require("./employees") //employee ==getEmployeeData ---> {getEmployeeData,print....}
+console.log(employee) // protocol
+
+
+// var ans = employee(100,20) //function calling...
+// console.log("ans = ",ans)
+
+
+var ans = employee.getEmployeeData("ram",'sharma')
+console.log("ans - ",ans)
+
+employee.printEmployeeData() // print function......
+
+
+
+server : req ----> manage --> response-----> web server | appliction server
+TOMCAT server:
+
+u can use and create web server:
+http : native module [node]
+express js: server
+
+npm install express
+
+dev tool : nodemon --> package.json
+//system
+
+npm install nodemon -g
