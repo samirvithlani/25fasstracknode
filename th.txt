@@ -30,3 +30,9 @@ dev tool : nodemon --> package.json
 //system
 
 npm install nodemon -g
+
+NPM : node package manager:
+node_modules : npm -->node_module -->build files [project] -->js | ts ->function
+
+JDK --> JVM --> jar --> packages --> classes --> methods
+node -->npm -->build --> packages --> .js | ts  ->functions
