@@ -27,7 +27,23 @@ var users = [
         id:4,
         name:"raj",
         age:23
-    }
+    },
+    {
+        id:5,
+        name:"shyam",
+        age:23
+    },
+
+    {
+        id:6,
+        name:"jay",
+        age:23
+    },
+    {
+        id:7,
+        name:"raj",
+        age:23
+    },
 ]
 
 const getUser = (req,res)=>{
@@ -68,6 +84,25 @@ const findUser = (req,res)=>{
     }
 
 }
+const searchUser = (req,res)=>{
+    
+    const name = req.params.name
+    const foundUsers = users.filter((user)=>user.name == name) //[]
+    if(foundUsers.length>0){
+        res.json({
+            message:"user found with name",
+            data:foundUsers
+        })
+    }
+    else{
+        res.json({
+            message:"user not found !!"
+        })
+    }
+
+
+
+}
 
 
 
@@ -75,5 +110,6 @@ const findUser = (req,res)=>{
 module.exports={
     getUser,
     getAllUsers,
-    findUser
+    findUser,
+    searchUser
 }

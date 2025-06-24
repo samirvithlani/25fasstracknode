@@ -111,3 +111,8 @@ req.body : POST PUT
 req.params : all....
 req.query:  ""
 req.header:  ""
+
+
+create employee controller and routes
+implment same apis
+change: find all employees salary>req.params.salary

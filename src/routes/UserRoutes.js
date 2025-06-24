@@ -12,5 +12,6 @@ router.get("/user",userController.getUser)
 //http://localhost:3000/user/users
 router.get("/users",userController.getAllUsers)
 router.get("/finduser/:id",userController.findUser)
+router.get("/searchuser/:name",userController.searchUser)
 
 module.exports = router
