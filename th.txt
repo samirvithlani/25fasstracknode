@@ -104,3 +104,10 @@ userController
 userROutes
 
 app.js -->userRoutes --->userConteoller function
+
+
+req ->data...
+req.body : POST PUT
+req.params : all....
+req.query:  ""
+req.header:  ""

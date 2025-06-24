@@ -9,5 +9,8 @@ const userController = require("../controller/UserController")
 // })
 
 router.get("/user",userController.getUser)
+//http://localhost:3000/user/users
+router.get("/users",userController.getAllUsers)
+router.get("/finduser/:id",userController.findUser)
 
 module.exports = router
