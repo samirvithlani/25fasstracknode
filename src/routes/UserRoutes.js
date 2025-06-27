@@ -14,5 +14,6 @@ router.get("/users",userController.getAllUsers)
 router.get("/finduser/:id",userController.findUser)
 router.get("/searchuser/:name",userController.searchUser)
 router.get("/getusers",userController.getUsersFromDb)
+router.get("/getuserbyid/:id",userController.getUserById)
 
 module.exports = router

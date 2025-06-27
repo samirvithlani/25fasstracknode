@@ -105,10 +105,44 @@ const getUsersFromDb = async (req, res) => {
   });
 };
 
+const getUserById=async(req,res)=>{
+
+  //params.id
+  const id = req.params.id
+
+  //find function array
+  //1 collection object id unique --
+  //single object
+  //userMode.find({_id:id})
+  const foundUser = await userModel.findById(id)
+  if(foundUser){
+    res.json({
+      message:"user found",
+      data:foundUser
+    })
+  }
+  else{
+    res.json({
+      message:"user not found with criteria",
+      data:null
+    })
+  }
+  // res.json({
+  //   message:"user found",
+  //   data:foundUser
+  // })
+
+
+
+}
+
+
+
 module.exports = {
   getUser,
   getAllUsers,
   findUser,
   searchUser,
-  getUsersFromDb
+  getUsersFromDb,
+  getUserById
 };
