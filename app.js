@@ -1,6 +1,7 @@
 const express = require("express") //express...
 const mongoose  = require("mongoose")
 const app = express()
+app.use(express.json()) //global middleware.. content type json
 
 
 //routes require...

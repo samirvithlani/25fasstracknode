@@ -136,7 +136,19 @@ const getUserById=async(req,res)=>{
 
 }
 
+const addUser = async(req,res)=>{
 
+  console.log(req.body)
+  //users collection -userModel
+  //userModel.insert(req.body)
+  const savedUser = await userModel.create(req.body)
+  res.json({
+    message:"user saved successfully",
+    data:savedUser
+  })
+  
+
+}
 
 module.exports = {
   getUser,
@@ -144,5 +156,6 @@ module.exports = {
   findUser,
   searchUser,
   getUsersFromDb,
-  getUserById
+  getUserById,
+  addUser
 };

@@ -118,3 +118,11 @@ implment same apis
 change: find all employees salary>req.params.salary
 
 MONGODB: node js ORM package: mongoose
+
+apis
+GET  -->backend --> data --send --frontend
+
+POST -->frontend data get -- POST
+
+PUT
+DELETE

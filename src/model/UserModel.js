@@ -2,7 +2,16 @@ const mongoose = require("mongoose")
 const Schema = mongoose.Schema; //class --> collection rep...
 
 const userModel = new Schema({
-    
+    name:{
+        type:String
+    },
+    age:{
+        type:Number
+    },
+    gender:{
+        type:String
+    }
+
 })
 
 // mongoose.model("users",userModel)
