@@ -126,3 +126,11 @@ POST -->frontend data get -- POST
 
 PUT
 DELETE
+
+
+GENRIC:
+HTTP STATUS:
+404
+messgae:"user added"
+backend --> frontend
+

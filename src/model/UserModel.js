@@ -10,7 +10,16 @@ const userModel = new Schema({
     },
     gender:{
         type:String
-    }
+    },
+    bloodGroup:{
+        type:String,
+        enum:["A+","B+","A-","O+"]
+    },
+    hobbies:[
+        {
+            type:String,
+        }
+    ]
 
 })
 

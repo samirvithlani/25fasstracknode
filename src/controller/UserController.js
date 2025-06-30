@@ -105,48 +105,86 @@ const getUsersFromDb = async (req, res) => {
   });
 };
 
-const getUserById=async(req,res)=>{
-
+const getUserById = async (req, res) => {
   //params.id
-  const id = req.params.id
+  const id = req.params.id;
 
   //find function array
   //1 collection object id unique --
   //single object
   //userMode.find({_id:id})
-  const foundUser = await userModel.findById(id)
-  if(foundUser){
+  const foundUser = await userModel.findById(id);
+  if (foundUser) {
     res.json({
-      message:"user found",
-      data:foundUser
-    })
-  }
-  else{
+      message: "user found",
+      data: foundUser,
+    });
+  } else {
     res.json({
-      message:"user not found with criteria",
-      data:null
-    })
+      message: "user not found with criteria",
+      data: null,
+    });
   }
   // res.json({
   //   message:"user found",
   //   data:foundUser
   // })
+};
 
-
-
-}
-
-const addUser = async(req,res)=>{
-
-  console.log(req.body)
+const addUser = async (req, res) => {
+  console.log(req.body);
   //users collection -userModel
   //userModel.insert(req.body)
-  const savedUser = await userModel.create(req.body)
-  res.json({
-    message:"user saved successfully",
-    data:savedUser
-  })
+  try {
+    const savedUser = await userModel.create(req.body);
+    res.status(201).json({
+      message: "user saved successfully",
+      data: savedUser,
+    });
+  } catch (err) {
+    res.status(500).json({
+      message: "error saving user...",
+      err: err,
+    });
+  }
+};
+
+//delete from user where id =?
+//db.users.remove({condition...})
+//delete user...
+
+const deleteUser = async(req,res)=>{
+
   
+    try{
+      const id = req.params.id
+      const deletedUser = await userModel.findByIdAndDelete(id)
+      //const deletedUser = await userModel.remove({_id:id})
+      if(deletedUser){
+        res.status(200).json({
+          message:"user deleted successfully..",
+          data:deletedUser
+        })
+      }
+      else{
+        res.status(404).json({
+          message:"user not found to delete",
+          data:null
+        })
+      }
+
+
+    }catch(err){
+
+        res.status(500).json({
+          message:"error while deleting user..",
+          err:err
+        })
+
+    }
+
+
+
 
 }
 
@@ -157,5 +195,6 @@ module.exports = {
   searchUser,
   getUsersFromDb,
   getUserById,
-  addUser
+  addUser,
+  deleteUser
 };
