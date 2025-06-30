@@ -153,40 +153,60 @@ const addUser = async (req, res) => {
 //db.users.remove({condition...})
 //delete user...
 
-const deleteUser = async(req,res)=>{
-
-  
-    try{
-      const id = req.params.id
-      const deletedUser = await userModel.findByIdAndDelete(id)
-      //const deletedUser = await userModel.remove({_id:id})
-      if(deletedUser){
-        res.status(200).json({
-          message:"user deleted successfully..",
-          data:deletedUser
-        })
-      }
-      else{
-        res.status(404).json({
-          message:"user not found to delete",
-          data:null
-        })
-      }
-
-
-    }catch(err){
-
-        res.status(500).json({
-          message:"error while deleting user..",
-          err:err
-        })
-
+const deleteUser = async (req, res) => {
+  try {
+    const id = req.params.id;
+    const deletedUser = await userModel.findByIdAndDelete(id);
+    //const deletedUser = await userModel.remove({_id:id})
+    if (deletedUser) {
+      res.status(200).json({
+        message: "user deleted successfully..",
+        data: deletedUser,
+      });
+    } else {
+      res.status(404).json({
+        message: "user not found to delete",
+        data: null,
+      });
     }
+  } catch (err) {
+    res.status(500).json({
+      message: "error while deleting user..",
+      err: err,
+    });
+  }
+};
 
+//update user....
+//update tablename set name=?...... where id=?
+//db.users.update({_id:id},{$set:{name:"req.body.name"}})
 
+const updateUser = async (req, res) => {
+  try {
+    const id = req.params.id;
 
-
-}
+    const updatedUser = await userModel.findByIdAndUpdate(id, req.body, {
+      new: true,
+    });
+    //{new:true} -->will return updatedObject..
+    //{new:false}==>will return old object(not updated..)
+    if (updatedUser) {
+      res.status(201).json({
+        message: "user updated successfully..",
+        data: updatedUser,
+      });
+    } else {
+      res.status(404).json({
+        message: "user not found.",
+      });
+    }
+  } catch (err) {
+    res.status(500).json({
+      message: "error while updating user..",
+      err: err,
+    });
+  }
+};
 
 module.exports = {
   getUser,
@@ -196,5 +216,6 @@ module.exports = {
   getUsersFromDb,
   getUserById,
   addUser,
-  deleteUser
+  deleteUser,
+  updateUser
 };

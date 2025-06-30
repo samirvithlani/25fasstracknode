@@ -17,7 +17,7 @@ router.get("/getusers",userController.getUsersFromDb)
 router.get("/getuserbyid/:id",userController.getUserById)
 
 router.delete("/deleteuser/:id",userController.deleteUser)
-
+router.put("/updateuser/:id",userController.updateUser)
 router.post("/adduser",userController.addUser)
 
 module.exports = router
