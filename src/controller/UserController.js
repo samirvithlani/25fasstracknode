@@ -131,6 +131,7 @@ const getUserById = async (req, res) => {
   // })
 };
 
+//before this filter apply...
 const addUser = async (req, res) => {
   console.log(req.body);
   //users collection -userModel

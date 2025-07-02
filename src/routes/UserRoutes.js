@@ -1,6 +1,7 @@
 //express...
 const router = require("express").Router() //server req -->as it is controller...
 const userController = require("../controller/UserController") 
+const validateRequest = require("../middleware/RequestMiddleware")
 
 //http://localhost:3000/user
 // router.get("/user",(req,res)=>{
@@ -18,7 +19,9 @@ router.get("/getuserbyid/:id",userController.getUserById)
 
 router.delete("/deleteuser/:id",userController.deleteUser)
 router.put("/updateuser/:id",userController.updateUser)
-router.post("/adduser",userController.addUser)
+
+router.post("/adduser",validateRequest,userController.addUser)
+
 router.put("/addhobby/:id",userController.addHobby)
 
 module.exports = router

@@ -143,4 +143,16 @@ user
 create table user ...roleid int, foreign key roleid references role(roleid)
 
 
+department model:
+employee model:
+
+user ->3 field expect ---> 2 validation failed...
+request validation..
+
+exam -hall ticket--->
+
+
+
+
+
 
