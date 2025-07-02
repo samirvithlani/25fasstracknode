@@ -19,7 +19,11 @@ const userModel = new Schema({
         {
             type:String,
         }
-    ]
+    ],
+    roleId:{
+        ref:"roles",
+        type:Schema.Types.ObjectId
+    }
 
 })
 

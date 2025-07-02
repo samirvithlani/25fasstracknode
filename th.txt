@@ -134,3 +134,13 @@ HTTP STATUS:
 messgae:"user added"
 backend --> frontend
 
+
+User ->role...
+
+role
+roleid name
+user
+create table user ...roleid int, foreign key roleid references role(roleid)
+
+
+

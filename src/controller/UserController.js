@@ -98,7 +98,7 @@ const searchUser = (req, res) => {
 const getUsersFromDb = async (req, res) => {
   //db.users.find()
   //find -->Promise --> then,catch -> async await
-  const users = await userModel.find();
+  const users = await userModel.find().populate("roleId")
   res.json({
     message: "users fetched",
     data: users,
@@ -208,6 +208,39 @@ const updateUser = async (req, res) => {
   }
 };
 
+//while adding hobby check first if hobby is already there send error message that hobby is added already...
+const addHobby = async(req,res)=>{
+
+  const id = req.params.id //where...
+  const hobby = req.body.hobby; //what
+  console.log(hobby)
+
+  try{
+
+    const updatedUser = await userModel.findByIdAndUpdate(id,{$push:{hobbies:hobby}},{new:true})
+    if(updatedUser){
+      res.status(200).json({
+        message:"hobby added...",
+        data:updatedUser
+      })
+    }
+    else{
+      res.status(404).json({
+        message:"error while adding hobby.."
+      })
+    }
+
+  }catch(err){
+    console.log(err)
+    res.status(500).json({
+      message:"hobbies can not added"
+    })
+  }
+}
+
+//remove hobby $pull
+//if hobby exisy then only remove or else send message that hobby is not listed..
+
 module.exports = {
   getUser,
   getAllUsers,
@@ -217,5 +250,6 @@ module.exports = {
   getUserById,
   addUser,
   deleteUser,
-  updateUser
+  updateUser,
+  addHobby
 };

@@ -10,6 +10,10 @@ const userRoutes = require("./src/routes/UserRoutes")
 app.use("/user",userRoutes)
 
 
+const roleRoutes = require("./src/routes/RoleRoutes")
+app.use("/role",roleRoutes)
+
+
 
 
 
