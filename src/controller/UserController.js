@@ -1,5 +1,6 @@
 //database -->users collection[rep] ->userModel
 const userModel = require("../model/UserModel");
+const sendingMail = require("../utils/MailUtil")
 
 const userObject = {
   id: 1,
@@ -138,6 +139,9 @@ const addUser = async (req, res) => {
   //userModel.insert(req.body)
   try {
     const savedUser = await userModel.create(req.body);
+    //mail...
+    await sendingMail(savedUser.email,"Welcome","Welcome to portal")
+
     res.status(201).json({
       message: "user saved successfully",
       data: savedUser,

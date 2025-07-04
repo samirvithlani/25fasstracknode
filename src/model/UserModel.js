@@ -1,4 +1,5 @@
-const mongoose = require("mongoose")
+const mongoose = require("mongoose");
+const { string } = require("zod/v4");
 const Schema = mongoose.Schema; //class --> collection rep...
 
 const userModel = new Schema({
@@ -23,6 +24,10 @@ const userModel = new Schema({
     roleId:{
         ref:"roles",
         type:Schema.Types.ObjectId
+    },
+    email:{
+        type:String,
+        unique:true
     }
 
 })
