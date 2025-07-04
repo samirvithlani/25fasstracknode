@@ -133,7 +133,7 @@ const getUserById = async (req, res) => {
 
 //before this filter apply...
 const addUser = async (req, res) => {
-  console.log(req.body);
+  console.log("here......",req.body);
   //users collection -userModel
   //userModel.insert(req.body)
   try {
