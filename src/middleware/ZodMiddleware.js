@@ -7,7 +7,8 @@ const zodMiddleware = (schema)=>async(req,res,next)=>{
     //userValidationSchema -- params == req.body not match --no parase..-->catch
 try{
 
-    await schema.parseAsync(req.body)
+    const validateData = await schema.parseAsync(req.body)
+    req.body = validateData
     next()
 
 }catch(err){
