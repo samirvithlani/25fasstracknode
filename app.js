@@ -14,6 +14,10 @@ const roleRoutes = require("./src/routes/RoleRoutes")
 app.use("/role",roleRoutes)
 
 
+const uploadRoutes = require("./src/routes/UploadRoutes")
+app.use("/upload",uploadRoutes)
+
+
 
 
 

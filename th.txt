@@ -151,6 +151,19 @@ request validation..
 
 exam -hall ticket--->
 
+File uploading....
+
+server : deploy --> local folder : buy bit costly :1000 rs
+db     : formate --> space                        : 10000 rs
+cloud  : google drive,aws s3,dropbox,onedrive,cloudinary,azure blob storage
+
+multer package file upload...
+
+frontend 
+
+2 type of data:
+1) form filed   file field
+
 
 
 
