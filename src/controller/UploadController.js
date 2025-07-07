@@ -11,7 +11,14 @@ const storage = multer.diskStorage({
 
 const upload = multer({
     storage:storage,
-    //fileFilter
+    fileFilter:(req,file,cb)=>{
+        if(file.mimetype ==="image/png" || file.mimetype ==="image/jpg" || file.mimetype ==="image/jpeg") {
+            cb(null,true)
+        }
+        else{
+            cb(new Error("Only images are allowd"),false)
+        }
+    }
 }).single("file")
 
 const uploadFile = (req,res)=>{
@@ -20,7 +27,7 @@ const uploadFile = (req,res)=>{
         if(err){
             res.status(500).json({
                 message:"error while uploading file..",
-                err:err
+                err:err.message
             })
         }
         else{
