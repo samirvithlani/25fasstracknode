@@ -1,6 +1,7 @@
 //database -->users collection[rep] ->userModel
 const userModel = require("../model/UserModel");
-const sendingMail = require("../utils/MailUtil")
+const sendingMail = require("../utils/MailUtil");
+const bcrypt = require("bcrypt");
 
 const userObject = {
   id: 1,
@@ -99,7 +100,7 @@ const searchUser = (req, res) => {
 const getUsersFromDb = async (req, res) => {
   //db.users.find()
   //find -->Promise --> then,catch -> async await
-  const users = await userModel.find().populate("roleId")
+  const users = await userModel.find().populate("roleId");
   res.json({
     message: "users fetched",
     data: users,
@@ -134,13 +135,18 @@ const getUserById = async (req, res) => {
 
 //before this filter apply...
 const addUser = async (req, res) => {
-  console.log("here......",req.body);
+  console.log("here......", req.body);
   //users collection -userModel
   //userModel.insert(req.body)
   try {
+    const salt = bcrypt.genSaltSync(10);
+    const hashedPassword = bcrypt.hashSync(req.body.password, salt);
+    req.body.password = hashedPassword;
+
+    //before this password enc..
     const savedUser = await userModel.create(req.body);
     //mail...
-    await sendingMail(savedUser.email,"Welcome","Welcome to portal")
+    await sendingMail(savedUser.email, "Welcome", "Welcome to portal");
 
     res.status(201).json({
       message: "user saved successfully",
@@ -214,37 +220,64 @@ const updateUser = async (req, res) => {
 };
 
 //while adding hobby check first if hobby is already there send error message that hobby is added already...
-const addHobby = async(req,res)=>{
-
-  const id = req.params.id //where...
+const addHobby = async (req, res) => {
+  const id = req.params.id; //where...
   const hobby = req.body.hobby; //what
-  console.log(hobby)
+  console.log(hobby);
 
-  try{
-
-    const updatedUser = await userModel.findByIdAndUpdate(id,{$push:{hobbies:hobby}},{new:true})
-    if(updatedUser){
+  try {
+    const updatedUser = await userModel.findByIdAndUpdate(
+      id,
+      { $push: { hobbies: hobby } },
+      { new: true }
+    );
+    if (updatedUser) {
       res.status(200).json({
-        message:"hobby added...",
-        data:updatedUser
-      })
-    }
-    else{
+        message: "hobby added...",
+        data: updatedUser,
+      });
+    } else {
       res.status(404).json({
-        message:"error while adding hobby.."
-      })
+        message: "error while adding hobby..",
+      });
     }
-
-  }catch(err){
-    console.log(err)
+  } catch (err) {
+    console.log(err);
     res.status(500).json({
-      message:"hobbies can not added"
-    })
+      message: "hobbies can not added",
+    });
   }
-}
+};
 
 //remove hobby $pull
 //if hobby exisy then only remove or else send message that hobby is not listed..
+
+const loginUser = async (req, res) => {
+  //email,password
+  //email -->user find -->database  --> encpassword -- plianpassword -->
+
+  const { email, password } = req.body;
+
+  const userFromEmail = await userModel.findOne({ email: email });
+  if (userFromEmail) {
+    //password comparee..
+    const isMatch = bcrypt.compareSync(password, userFromEmail.password); //true //false
+    if (isMatch) {
+      res.status(200).json({
+        message: "login success",
+        data: userFromEmail,
+      });
+    } else {
+      res.status(500).json({
+        message: "invalid credentials",
+      });
+    }
+  } else {
+    res.status(404).json({
+      message: "user not found signup first..",
+    });
+  }
+};
 
 module.exports = {
   getUser,
@@ -256,5 +289,6 @@ module.exports = {
   addUser,
   deleteUser,
   updateUser,
-  addHobby
+  addHobby,
+  loginUser,
 };

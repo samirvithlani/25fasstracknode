@@ -168,6 +168,13 @@ frontend
 
 cred .env file...
 
+auth module:
+1) authentication:
+    check user is valid or not
+2) authorization
+   authorize user to access the resource
+
+
 
 
 

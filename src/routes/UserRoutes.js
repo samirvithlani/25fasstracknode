@@ -27,4 +27,6 @@ router.post("/adduser",zodMiddleware(userValidationSchema),userController.addUse
 
 router.put("/addhobby/:id",userController.addHobby)
 
+router.post("/loginuser",userController.loginUser)
+
 module.exports = router
