@@ -1,4 +1,5 @@
 const multer = require("multer")
+const uploadToCloundinary = require("../utils/CloudinaryUtil")
 
 
 //storage...
@@ -21,9 +22,9 @@ const upload = multer({
     }
 }).single("file")
 
-const uploadFile = (req,res)=>{
+const uploadFile = async(req,res)=>{
 
-    upload(req,res,(err)=>{
+    upload(req,res,async(err)=>{
         if(err){
             res.status(500).json({
                 message:"error while uploading file..",
@@ -32,9 +33,12 @@ const uploadFile = (req,res)=>{
         }
         else{
 
+            //cloundiary..
+            const cloundinaryResponse = await uploadToCloundinary(req.file.path)
             res.status(201).json({
                 message:"file uploaded successfully..",
-                data:req.file
+                data:req.file,
+                cloundinaryResponse:cloundinaryResponse
             })
         }
     })
