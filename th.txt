@@ -187,7 +187,9 @@ api secure : email password
 zomato -->user --> google map -->paid ->autho 0-->use --> every api -->email pass | token --> loogedin user object
 
 
-
+Bearer token:
+what is bearer token?
+a token that is used to access protected resources by the user.
 
 
 

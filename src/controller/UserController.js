@@ -267,7 +267,7 @@ const loginUser = async (req, res) => {
     if (isMatch) {
 
       const token = jwt.sign(userFromEmail.toObject(),process.env.SECRET_KEY,{
-        expiresIn:"7d"
+        expiresIn:60
       })
 
       res.status(200).json({

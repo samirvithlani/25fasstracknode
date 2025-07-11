@@ -4,6 +4,7 @@ const userController = require("../controller/UserController")
 const validateRequest = require("../middleware/RequestMiddleware")
 const zodMiddleware = require("../middleware/ZodMiddleware")
 const userValidationSchema = require("../validationschemas/UserValidationSchema")
+const authMiddleware = require("../middleware/AuthMiddleware")
 
 //http://localhost:3000/user
 // router.get("/user",(req,res)=>{
@@ -16,7 +17,7 @@ router.get("/user",userController.getUser)
 router.get("/users",userController.getAllUsers)
 router.get("/finduser/:id",userController.findUser)
 router.get("/searchuser/:name",userController.searchUser)
-router.get("/getusers",userController.getUsersFromDb)
+router.get("/getusers",authMiddleware,userController.getUsersFromDb)
 router.get("/getuserbyid/:id",userController.getUserById)
 
 router.delete("/deleteuser/:id",userController.deleteUser)
