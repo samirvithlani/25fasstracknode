@@ -175,6 +175,20 @@ auth module:
    authorize user to access the resource
 
 
+auth2 module: security module
+JWT token: json web token
+use: to authenticate and authorize user by using token
+token: generate :user login object:
+
+
+web application : auth : email paasword
+api secure : email password
+
+zomato -->user --> google map -->paid ->autho 0-->use --> every api -->email pass | token --> loogedin user object
+
+
+
+
 
 
 

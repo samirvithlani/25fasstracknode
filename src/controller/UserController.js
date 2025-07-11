@@ -2,6 +2,8 @@
 const userModel = require("../model/UserModel");
 const sendingMail = require("../utils/MailUtil");
 const bcrypt = require("bcrypt");
+const jwt = require("jsonwebtoken")
+require("dotenv").config()
 
 const userObject = {
   id: 1,
@@ -263,9 +265,16 @@ const loginUser = async (req, res) => {
     //password comparee..
     const isMatch = bcrypt.compareSync(password, userFromEmail.password); //true //false
     if (isMatch) {
+
+      const token = jwt.sign(userFromEmail.toObject(),process.env.SECRET_KEY,{
+        expiresIn:"7d"
+      })
+
       res.status(200).json({
         message: "login success",
-        data: userFromEmail,
+       // data: userFromEmail,
+       token:token
+
       });
     } else {
       res.status(500).json({
