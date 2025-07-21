@@ -192,5 +192,17 @@ what is bearer token?
 a token that is used to access protected resources by the user.
 
 
+----------------------------------------------------------------
+
+signup module:
+data -> validate --> database --> mail | sms
+
+radis server:
+queue
+
+
+https://learn.microsoft.com/en-us/windows/wsl/install
+install redis in wsl
+
 
 

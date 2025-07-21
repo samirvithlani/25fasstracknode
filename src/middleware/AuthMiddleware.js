@@ -13,6 +13,9 @@ const authMiddleware = (req,res,next)=>{
             try{
 
                 const dataFromtoken =jwt.verify(token,process.env.SECRET_KEY)
+                //dataaFromtoken == {iat,eat,_id}->_database findByid() -->user
+                //if user - next --> 
+                //popuate role --> admin -->
                 console.log(dataFromtoken)
                 next() //controller
 

@@ -269,7 +269,7 @@ const loginUser = async (req, res) => {
       const token = jwt.sign(userFromEmail.toObject(),process.env.SECRET_KEY,{
         expiresIn:60
       })
-
+      //db store...
       res.status(200).json({
         message: "login success",
        // data: userFromEmail,
