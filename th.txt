@@ -205,4 +205,7 @@ https://learn.microsoft.com/en-us/windows/wsl/install
 install redis in wsl
 
 
+create 1 temp collection named cronjobs in mongo db
+every 2 min insert a document with current date and time wirth fake data
+and create 5 min which will delte all data iof that collection
 
